@@ -57,6 +57,26 @@ int binary_search(int arr[], int n, int x) {
     return binary_search(arr, 0, n - 1, x);
 }
 
+int binary_search_recursive(int arr[], int l, int r, int x) {
+    if (l < r) {
+        int m = (r + l) / 2;
+
+        if (arr[m] < x) {
+            return binary_search_recursive(arr, m + 1, r, x);
+        } else if (arr[m] > x) {
+            return binary_search_recursive(arr, l, m - 1, x);
+        } else {
+            return m + 1;
+        }
+    } else {
+        return x > arr[l] ? l + 1 : l;
+    }
+}
+
+int binary_search_recursive(int arr[], int n, int x) {
+    return binary_search_recursive(arr, 0, n - 1, x);
+}
+
 int meta_binary_search(int arr[], int n, int x) {
     MEASURE_FUNC()
 
